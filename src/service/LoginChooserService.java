@@ -22,7 +22,7 @@ public class LoginChooserService {
             return new GuestService();
         }
         else{
-            return new AccountService();
+            return new AccountService(loginTextField,passPasswordField);
         }
     }
 }
