@@ -31,7 +31,7 @@ public class UserDAO {
 
             connection = ConnectionProvider.getConnection();
             sqlStatement = connection.prepareStatement(CREATE);
-            sqlStatement.setString(1, "l");
+            sqlStatement.setString(1, "");
 
         } catch (Exception ex){
 
