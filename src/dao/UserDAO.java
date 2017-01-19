@@ -5,6 +5,9 @@ package dao;
  */
 public class UserDAO {
 
+    private static final String CREATE = "INSERT INTO user(id, login, username, password) VALUES(?, ?, ?, ?);";
+    private static final String READ = "SELECT login FROM user WHERE login = ?;";
+
 
 
 }
