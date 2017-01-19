@@ -31,7 +31,7 @@ public class GuestService extends LoginTypeSuperclass {
             serverSocket = new Socket("127.0.0.1",5000);
         } catch (IOException e) {
             System.out.println("Cannot connect to the server.");
-            alertService.showAlert(Alert.AlertType.WARNING,"Connection problems","Cannot connect to the server.");
+            AlertService.showAlert(Alert.AlertType.WARNING,"Connection problems","Cannot connect to the server.");
         }
 
     }

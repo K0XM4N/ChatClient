@@ -12,7 +12,6 @@ import java.net.Socket;
 
 public abstract class LoginTypeSuperclass implements LoginType {
 
-    protected AlertService alertService;
     @Setter
     protected String username;
     protected Socket serverSocket;
