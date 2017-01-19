@@ -1,5 +1,6 @@
 package controller;
 
+import dao.UserDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -37,7 +38,7 @@ public class RegisterController {
 
     public void handleRegisterButton(ActionEvent event) {
 
-
+        UserDAO userDAO = new UserDAO(loginInput,usernameInput,pass1Input,pass2Input);
 
     }
 }

@@ -1,5 +1,9 @@
 package dao;
 
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import lombok.AllArgsConstructor;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,10 +11,15 @@ import java.sql.ResultSet;
 /**
  * Created by Krzysztof on 2017-01-19.
  */
+@AllArgsConstructor
 public class UserDAO {
+
+    private TextField loginInput, usernameInput;
+    private PasswordField pass1Input, pass2Input;
 
     private static final String CREATE = "INSERT INTO user( login, username, password) VALUES(?, ?, ?, ?);";
     private static final String READ = "SELECT password FROM user WHERE login = ?;";
+
 
     public void createUser(){
 
