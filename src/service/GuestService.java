@@ -6,13 +6,20 @@ import java.net.Socket;
 /**
  * Created by Krzysztof on 2017-01-18.
  */
-public class GuestService implements LoginType {
+public class GuestService extends LoginTypeSuperclass {
 
-
-    private Socket serverSocket;
 
     @Override
     public void logIn() {
+
+        setUsername("Guest");
+        connectToServer();
+
+        try {
+            sendUsernameToServer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -27,4 +34,8 @@ public class GuestService implements LoginType {
 
     }
 
+    @Override
+    protected void sendUsernameToServer() throws IOException {
+        super.sendUsernameToServer();
+    }
 }
