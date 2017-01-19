@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import model.SceneSwitcherModel;
 import service.LoginChooserService;
+import service.LoginType;
 
 import java.io.IOException;
 
@@ -26,6 +27,7 @@ public class LoginController {
 
     private SceneSwitcherModel sceneSwitcher;
     private LoginChooserService loginChooserService;
+    private LoginType loginType;
 
     public void initialize(){
         sceneSwitcher = new SceneSwitcherModel();
@@ -33,7 +35,7 @@ public class LoginController {
 
     public void handleLoginButton(ActionEvent event) {
         loginChooserService = new LoginChooserService(loginTextField, passPasswordField,checkBoxGuest);
-        loginChooserService.chooseLoginType();
+        loginType = loginChooserService.chooseLoginType();
 
     }
 
