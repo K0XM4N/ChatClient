@@ -1,9 +1,11 @@
 package service;
 
+import java.io.IOException;
+
 /**
  * Created by Krzysztof on 2017-01-18.
  */
-public class AccountService implements LoginType {
+public class AccountService extends LoginTypeSuperclass {
 
 
 
@@ -12,4 +14,8 @@ public class AccountService implements LoginType {
 
     }
 
+    @Override
+    protected void sendUsernameToServer() throws IOException {
+        super.sendUsernameToServer();
+    }
 }

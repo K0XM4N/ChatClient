@@ -10,7 +10,11 @@ import model.SceneSwitcherModel;
 import service.LoginChooserService;
 import service.LoginType;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 
 public class LoginController {
@@ -33,7 +37,8 @@ public class LoginController {
         sceneSwitcher = new SceneSwitcherModel();
     }
 
-    public void handleLoginButton(ActionEvent event) {
+    public void handleLoginButton(ActionEvent event) throws IOException {
+
         loginChooserService = new LoginChooserService(loginTextField, passPasswordField,checkBoxGuest);
         loginType = loginChooserService.chooseLoginType();
         loginType.logIn();

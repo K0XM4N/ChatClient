@@ -17,9 +17,7 @@ public abstract class LoginTypeSuperclass implements LoginType {
     protected Socket serverSocket;
 
     @Override
-    public void logIn() {
-
-    }
+    public void logIn() {}
 
     protected void sendUsernameToServer() throws IOException {
 
@@ -27,7 +25,6 @@ public abstract class LoginTypeSuperclass implements LoginType {
             PrintWriter sender = new PrintWriter(serverSocket.getOutputStream());
             sender.println(username);
             sender.flush();
-            sender.close();
         }
 
     }

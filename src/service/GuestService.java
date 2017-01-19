@@ -26,9 +26,10 @@ public class GuestService extends LoginTypeSuperclass {
     private void connectToServer(){
 
         try {
-            serverSocket = new Socket("127.0.0.1",5001);
+            serverSocket = new Socket("127.0.0.1",5000);
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("Cannot connect to the server.");
             //WINDOW POP UP!
         }
 
