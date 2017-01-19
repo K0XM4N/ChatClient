@@ -35,8 +35,8 @@ public class ConnectionProvider {
         connectionPool.setMaxIdleTime(3600);
     }
 
-    public Connection getConnection() throws SQLException {
-        return connectionPool.getConnection();
+    public static Connection getConnection() throws SQLException, PropertyVetoException {
+        return getInstance().connectionPool.getConnection();
     }
 
     public static ConnectionProvider getInstance() throws PropertyVetoException {

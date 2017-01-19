@@ -19,27 +19,27 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField promptText="Login" VBox.vgrow="ALWAYS">
+                  <TextField fx:id="loginInput" promptText="Login" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField promptText="Username" VBox.vgrow="ALWAYS">
+                  <TextField fx:id="usernameInput" promptText="Username" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <PasswordField promptText="Password" VBox.vgrow="ALWAYS">
+                  <PasswordField fx:id="pass1Input" promptText="Password" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
                   </PasswordField>
-                  <PasswordField focusTraversable="false" promptText="Re-Type password">
+                  <PasswordField fx:id="pass2Input" promptText="Re-Type password">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
                   </PasswordField>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Register" VBox.vgrow="ALWAYS">
+                  <Button onAction="#handleRegisterButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Register" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>

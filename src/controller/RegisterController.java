@@ -28,4 +28,10 @@ public class RegisterController {
         sceneSwitcher.show(registerContainer, changedContainer);
 
     }
+
+    public void handleRegisterButton(ActionEvent event) {
+
+
+
+    }
 }
