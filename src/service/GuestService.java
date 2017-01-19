@@ -1,5 +1,7 @@
 package service;
 
+import javafx.scene.control.Alert;
+
 import java.io.IOException;
 import java.net.Socket;
 
@@ -28,9 +30,8 @@ public class GuestService extends LoginTypeSuperclass {
         try {
             serverSocket = new Socket("127.0.0.1",5000);
         } catch (IOException e) {
-            e.printStackTrace();
             System.out.println("Cannot connect to the server.");
-            //WINDOW POP UP!
+            alertService.showAlert(Alert.AlertType.WARNING,"Connection problems","Cannot connect to the server.");
         }
 
     }

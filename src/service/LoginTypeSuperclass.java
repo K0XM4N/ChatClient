@@ -1,6 +1,5 @@
 package service;
 
-import lombok.NonNull;
 import lombok.Setter;
 
 import java.io.IOException;
@@ -10,9 +9,11 @@ import java.net.Socket;
 /**
  * Created by Krzysztof on 2017-01-19.
  */
-@Setter
+
 public abstract class LoginTypeSuperclass implements LoginType {
 
+    protected AlertService alertService;
+    @Setter
     protected String username;
     protected Socket serverSocket;
 
