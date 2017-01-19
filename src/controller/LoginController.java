@@ -36,6 +36,7 @@ public class LoginController {
     public void handleLoginButton(ActionEvent event) {
         loginChooserService = new LoginChooserService(loginTextField, passPasswordField,checkBoxGuest);
         loginType = loginChooserService.chooseLoginType();
+        loginType.logIn();
 
     }
 
