@@ -59,6 +59,7 @@ public class UserDAO {
                 Connection connection = ConnectionProvider.getConnection();
                 @Cleanup
                 PreparedStatement sqlStatement = connection.prepareStatement(CREATE);
+
                 sqlStatement.setString(1, userBean.getLogin());
                 sqlStatement.setString(2, userBean.getUsername());
                 sqlStatement.setString(3, userBean.getPassword1());
@@ -70,7 +71,6 @@ public class UserDAO {
                     AlertService.showAlert(Alert.AlertType.INFORMATION, "Registraion", "Your account was succesfuly created.");
 
                 }
-
             }
              catch (SQLException e) {
                 e.printStackTrace();
