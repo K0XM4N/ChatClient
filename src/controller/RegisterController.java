@@ -39,6 +39,7 @@ public class RegisterController {
     public void handleRegisterButton(ActionEvent event) {
 
         UserDAO userDAO = new UserDAO(loginInput,usernameInput,pass1Input,pass2Input);
+        userDAO.createUser();
 
     }
 }
