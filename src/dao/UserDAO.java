@@ -48,7 +48,7 @@ public class UserDAO {
     }
 
 
-    public void createUser(){
+    public void createUserInDB(){
 
         if (LoginFieldsValidatorService.isFieldVerified(userBean.getLogin(),userBean.getUsername(),userBean.getPassword1(),userBean.getPassword2())){
 
@@ -86,6 +86,20 @@ public class UserDAO {
     public void selectUserLoginFromDB(){
 
         if (LoginFieldsValidatorService.isFieldVerified(userBean.getLogin(),userBean.getUsername(),userBean.getPassword1())){
+
+            try {
+
+                @Cleanup
+                Connection connection = ConnectionProvider.getConnection();
+                @Cleanup
+                PreparedStatement selectLogin = connection.prepareStatement(READ_LOGIN);
+
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (PropertyVetoException e) {
+                e.printStackTrace();
+            }
 
         }
 
