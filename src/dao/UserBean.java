@@ -2,6 +2,7 @@ package dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -17,6 +18,14 @@ public class UserBean {
     private int id;
     private String login;
     private String username;
-    private String password;
+    private String password1;
+    private String password2;
+    private String actualPassword;
+
+    public UserBean(String login, String username, String actualPassword){
+        this.login = login;
+        this.username = username;
+        this.actualPassword = actualPassword;
+    }
 
 }
