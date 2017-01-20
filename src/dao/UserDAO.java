@@ -24,6 +24,7 @@ public class UserDAO {
     private static final String CREATE = "INSERT INTO user( login, username, password) VALUES(?, ?, ?);";
     private static final String READ_PASSWORD = "SELECT password FROM user WHERE login = ?;";
     private static final String READ_LOGIN = "SELECT login FROM user WHERE login = ?;";
+    private static final String READ_USERNAME = "SELECT username FROM user WHERE username = ?;";
 
     private String login;
     private String username;
@@ -70,16 +71,14 @@ public class UserDAO {
                 sqlStatement.setString(3,pass1);
 
                 int rowsAffected;
-
                 // read from database, check login -> if there is no login, create user.
-                if (isUserAlreadyRegistrated(connection)){
+
+                if (isLoginAlreadyInDB(connection) && isUsernameAlreadyInDB(connection)){
+
                     rowsAffected = sqlStatement.executeUpdate();
                     System.out.println("Rows affected: " + rowsAffected);
                     AlertService.showAlert(Alert.AlertType.INFORMATION,"Registraion","Your account was succesfuly created.");
-                }
-                else{
-                    //send message: login is already in use!
-                    AlertService.showAlert(Alert.AlertType.INFORMATION,"Registration","Login is already in use. Please use another.");
+
                 }
 
             } catch (SQLException ex){
@@ -101,13 +100,33 @@ public class UserDAO {
 
     }
 
-    public boolean isUserAlreadyRegistrated(Connection connection) throws SQLException {
 
-        PreparedStatement selectLogin = connection.prepareStatement(READ_LOGIN);
-        selectLogin.setString(1,login);
+
+
+
+
+    public boolean isLoginAlreadyInDB(Connection connection) throws SQLException {
+
+        return veryfication(connection, READ_LOGIN, login, Alert.AlertType.INFORMATION,"Registration","Login is already in use. Please use another.");
+
+    }
+
+    private boolean isUsernameAlreadyInDB(Connection connection) throws SQLException {
+
+        return veryfication(connection,READ_USERNAME,username, Alert.AlertType.INFORMATION,"Registration","Username is already in use. Please use another else.");
+
+    }
+
+
+    private boolean veryfication(Connection connection, String SQL_STATEMENT, String registartionField, Alert.AlertType alertType, String windowTitle, String alertMessge) throws SQLException {
+
+
+        PreparedStatement selectLogin = connection.prepareStatement(SQL_STATEMENT);
+        selectLogin.setString(1,registartionField);
         ResultSet loginResult = selectLogin.executeQuery();
 
         if (loginResult.next()){
+            AlertService.showAlert(alertType, windowTitle, alertMessge);
             return false;
         }
         else{
@@ -115,5 +134,7 @@ public class UserDAO {
         }
 
     }
+
+
 
 }
