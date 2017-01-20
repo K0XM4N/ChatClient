@@ -3,6 +3,7 @@ package dao;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import lombok.Cleanup;
 import service.AlertService;
 import service.LoginFieldsValidatorService;
 
@@ -54,36 +55,34 @@ public class UserDAO {
         pass1 = pass1Input.getText();
     }
 
+
     public void createUser(){
 
         if (LoginFieldsValidatorService.isFieldVerified(login,username,pass1,pass2)){
 
-            Connection connection = null;
-            PreparedStatement sqlStatement = null;
             ResultSet sqlResult = null;
 
-            try{
-
-                connection = ConnectionProvider.getConnection();
-                sqlStatement = connection.prepareStatement(CREATE);
+            try {
+                @Cleanup
+                Connection connection = ConnectionProvider.getConnection();
+                @Cleanup
+                PreparedStatement sqlStatement = connection.prepareStatement(CREATE);
                 sqlStatement.setString(1, login);
                 sqlStatement.setString(2, username);
-                sqlStatement.setString(3,pass1);
+                sqlStatement.setString(3, pass1);
 
-                int rowsAffected;
-                // read from database, check login -> if there is no login, create user.
+                if (isLoginAlreadyInDB(connection) && isUsernameAlreadyInDB(connection)) {
 
-                if (isLoginAlreadyInDB(connection) && isUsernameAlreadyInDB(connection)){
-
-                    rowsAffected = sqlStatement.executeUpdate();
+                    int rowsAffected = sqlStatement.executeUpdate();
                     System.out.println("Rows affected: " + rowsAffected);
-                    AlertService.showAlert(Alert.AlertType.INFORMATION,"Registraion","Your account was succesfuly created.");
+                    AlertService.showAlert(Alert.AlertType.INFORMATION, "Registraion", "Your account was succesfuly created.");
 
                 }
 
-            } catch (SQLException ex){
-                AlertService.showAlert(Alert.AlertType.WARNING, "Database error", "Cannot connect do database");
-                ex.printStackTrace();
+            }
+             catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("Problem with SQL STATEMENTS");
             } catch (PropertyVetoException e) {
                 e.printStackTrace();
             }
