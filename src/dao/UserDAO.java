@@ -27,10 +27,7 @@ public class UserDAO {
     private static final String READ_LOGIN = "SELECT login FROM user WHERE login = ?;";
     private static final String READ_USERNAME = "SELECT username FROM user WHERE username = ?;";
 
-    private String login;
-    private String username;
-    private String pass1;
-    private String pass2;
+    private UserBean userBean;
 
 
     public UserDAO(TextField loginInput,TextField usernameInput, PasswordField pass1Input, PasswordField pass2Input){
@@ -39,10 +36,7 @@ public class UserDAO {
         this.pass1Input = pass1Input;
         this.pass2Input = pass2Input;
 
-        this.login = loginInput.getText();
-        this.username = usernameInput.getText();
-        this.pass1 = pass1Input.getText();
-        this.pass2 = pass2Input.getText();
+        userBean = new UserBean(loginInput.getText(),usernameInput.getText(),pass1Input.getText(),pass2Input.getText());
     }
 
     public UserDAO(TextField loginInput,TextField usernameInput, PasswordField pass1Input){
@@ -50,15 +44,13 @@ public class UserDAO {
         this.usernameInput = usernameInput;
         this.pass1Input = pass1Input;
 
-        login = loginInput.getText();
-        username = usernameInput.getText();
-        pass1 = pass1Input.getText();
+        userBean = new UserBean(loginInput.getText(),usernameInput.getText(),pass1Input.getText());
     }
 
 
     public void createUser(){
 
-        if (LoginFieldsValidatorService.isFieldVerified(login,username,pass1,pass2)){
+        if (LoginFieldsValidatorService.isFieldVerified(userBean.getLogin(),userBean.getUsername(),userBean.getPassword1(),userBean.getPassword2())){
 
             ResultSet sqlResult = null;
 
@@ -67,9 +59,9 @@ public class UserDAO {
                 Connection connection = ConnectionProvider.getConnection();
                 @Cleanup
                 PreparedStatement sqlStatement = connection.prepareStatement(CREATE);
-                sqlStatement.setString(1, login);
-                sqlStatement.setString(2, username);
-                sqlStatement.setString(3, pass1);
+                sqlStatement.setString(1, userBean.getLogin());
+                sqlStatement.setString(2, userBean.getUsername());
+                sqlStatement.setString(3, userBean.getPassword1());
 
                 if (isLoginAlreadyInDB(connection) && isUsernameAlreadyInDB(connection)) {
 
@@ -93,7 +85,7 @@ public class UserDAO {
 
     public void selectUserLoginFromDB(){
 
-        if (LoginFieldsValidatorService.isFieldVerified(login,username,pass1)){
+        if (LoginFieldsValidatorService.isFieldVerified(userBean.getLogin(),userBean.getUsername(),userBean.getPassword1())){
 
         }
 
@@ -106,13 +98,13 @@ public class UserDAO {
 
     public boolean isLoginAlreadyInDB(Connection connection) throws SQLException {
 
-        return veryfication(connection, READ_LOGIN, login, Alert.AlertType.INFORMATION,"Registration","Login is already in use. Please use another.");
+        return veryfication(connection, READ_LOGIN, userBean.getLogin(), Alert.AlertType.INFORMATION,"Registration","Login is already in use. Please use another.");
 
     }
 
     private boolean isUsernameAlreadyInDB(Connection connection) throws SQLException {
 
-        return veryfication(connection,READ_USERNAME,username, Alert.AlertType.INFORMATION,"Registration","Username is already in use. Please use another else.");
+        return veryfication(connection,READ_USERNAME,userBean.getUsername(), Alert.AlertType.INFORMATION,"Registration","Username is already in use. Please use another else.");
 
     }
 

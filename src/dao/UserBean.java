@@ -12,7 +12,6 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@AllArgsConstructor
 public class UserBean {
 
     private int id;
@@ -25,6 +24,14 @@ public class UserBean {
         this.login = login;
         this.username = username;
         this.password1 = actualPassword;
+    }
+
+    public UserBean(String login, String username, String password1, String password2) {
+        this.login = login;
+        this.username = username;
+        this.password1 = password1;
+        this.password2 = password2;
+
     }
 
 }
