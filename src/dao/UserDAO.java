@@ -3,6 +3,7 @@ package dao;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import lombok.AllArgsConstructor;
+import service.LoginFieldsValidatorService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,17 +24,26 @@ public class UserDAO {
 
     public void createUser(){
 
-        Connection connection = null;
-        PreparedStatement sqlStatement = null;
-        ResultSet sqlResult = null;
+        String login = loginInput.getText();
+        String username = usernameInput.getText();
+        String pass1 = pass1Input.getText();
+        String pass2 = pass2Input.getText();
 
-        try{
+        if (LoginFieldsValidatorService.isFieldVerified(login,username,pass1,pass2)){
 
-            connection = ConnectionProvider.getConnection();
-            sqlStatement = connection.prepareStatement(CREATE);
-            sqlStatement.setString(1, "");
+            Connection connection = null;
+            PreparedStatement sqlStatement = null;
+            ResultSet sqlResult = null;
 
-        } catch (Exception ex){
+            try{
+
+                connection = ConnectionProvider.getConnection();
+                sqlStatement = connection.prepareStatement(CREATE);
+                sqlStatement.setString(1, "");
+
+            } catch (Exception ex){
+
+            }
 
         }
 
