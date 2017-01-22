@@ -23,9 +23,9 @@ public class LoginFieldsValidatorService {
 
     }
 
-    public static boolean isFieldVerified(String login, String username, String pass1){
+    public static boolean isFieldVerified(String login,  String pass1){
 
-        if (login.isEmpty() || username.isEmpty() || pass1.isEmpty()){
+        if (login.isEmpty() || pass1.isEmpty()){
             return false;
         }
         else{

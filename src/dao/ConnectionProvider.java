@@ -4,15 +4,9 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 import javafx.scene.control.Alert;
 import service.AlertService;
 
-import javax.annotation.Resource;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Properties;
 
 /**
  * Created by Krzysztof on 2017-01-18.
@@ -20,8 +14,8 @@ import java.util.Properties;
 
 public class ConnectionProvider {
 
-    private static ConnectionProvider conectionProvider;
-    private ComboPooledDataSource connectionPool;
+    private static ConnectionProvider connectionProvider;
+    private  ComboPooledDataSource connectionPool;
 
     private ConnectionProvider() {
 
@@ -42,16 +36,16 @@ public class ConnectionProvider {
         }
     }
 
-    public static Connection getConnection() throws SQLException, PropertyVetoException {
-        return getInstance().connectionPool.getConnection();
+    public static Connection getConnection() throws PropertyVetoException, SQLException {
+       return getInstance().connectionPool.getConnection();
     }
 
     public static ConnectionProvider getInstance() throws PropertyVetoException {
 
-        if (conectionProvider == null){
-            conectionProvider = new ConnectionProvider();
+        if (connectionProvider == null){
+            connectionProvider = new ConnectionProvider();
         }
-        return conectionProvider;
+        return connectionProvider;
     }
 
 }

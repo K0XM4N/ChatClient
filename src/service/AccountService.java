@@ -1,5 +1,7 @@
 package service;
 
+import dao.UserBean;
+import dao.UserDAO;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import lombok.AllArgsConstructor;
@@ -15,9 +17,12 @@ public class AccountService extends LoginTypeSuperclass {
     private TextField loginInput;
     private PasswordField passInput;
 
+
     @Override
     public void logIn() {
-
+        UserDAO userDAO = new UserDAO(loginInput,passInput);
+        userDAO.logIn();
+        setUsername(userDAO.getUserBean().getUsername());
     }
 
     @Override
