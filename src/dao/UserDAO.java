@@ -52,8 +52,6 @@ public class UserDAO {
 
         if (LoginFieldsValidatorService.isFieldVerified(userBean.getLogin(),userBean.getUsername(),userBean.getPassword1(),userBean.getPassword2())){
 
-            ResultSet sqlResult = null;
-
             try {
                 @Cleanup
                 Connection connection = ConnectionProvider.getConnection();
