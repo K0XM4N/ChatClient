@@ -8,6 +8,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import lombok.Getter;
 import model.SceneSwitcherModel;
 import service.LoginChooserService;
 import service.LoginType;
@@ -26,7 +27,7 @@ import java.sql.SQLException;
 
 public class LoginController {
 
-
+    @Getter
     @FXML
     private VBox mainContainer;
     @FXML
@@ -46,7 +47,7 @@ public class LoginController {
 
     public void handleLoginButton(ActionEvent event) throws IOException {
 
-        loginChooserService = new LoginChooserService(loginTextField, passPasswordField,checkBoxGuest);
+        loginChooserService = new LoginChooserService(loginTextField, passPasswordField,checkBoxGuest,mainContainer);
         loginType = loginChooserService.chooseLoginType();
         loginType.logIn();
 

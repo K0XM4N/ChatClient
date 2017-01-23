@@ -12,6 +12,7 @@ import java.io.IOException;
 public class SceneSwitcherModel {
 
     private VBox container;
+
     public VBox loadScreen(String pathToViewFXML) throws IOException {
 
         FXMLLoader loader = new FXMLLoader();

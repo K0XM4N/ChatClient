@@ -1,5 +1,7 @@
 package service;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.VBox;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import model.ConnectionModel;
@@ -19,14 +21,24 @@ public abstract class LoginTypeSuperclass implements LoginType {
     protected String username;
     protected SceneSwitcherModel sceneSwitcher;
     protected ConnectionModel connectionModel;
+    protected VBox mainContainer;
 
-    public LoginTypeSuperclass(SceneSwitcherModel sceneSwitcher, ConnectionModel connectionModel){
+    public LoginTypeSuperclass(SceneSwitcherModel sceneSwitcher, ConnectionModel connectionModel, VBox mainContainer){
         this.sceneSwitcher =sceneSwitcher;
         this.connectionModel = connectionModel;
+        this.mainContainer = mainContainer;
     }
 
     @Override
     public void logIn() throws IOException {}
 
+    protected void loadChatWindow() throws IOException {
 
+        if (sceneSwitcher != null){
+            VBox chatContainer = sceneSwitcher.loadScreen("../view/chatWindow.fxml");
+            chatContainer.setFillWidth(true);
+            sceneSwitcher.show(mainContainer,chatContainer);
+        }
+
+    }
 }
