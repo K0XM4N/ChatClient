@@ -5,6 +5,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import lombok.AllArgsConstructor;
+import model.ConnectionModel;
+import model.SceneSwitcherModel;
 
 /**
  * Created by Krzysztof on 2017-01-18.
@@ -20,10 +22,10 @@ public class LoginChooserService {
     public LoginType chooseLoginType(){
 
         if (checkBoxGuest.isSelected()){
-            return new GuestService();
+            return new GuestService(new SceneSwitcherModel(),new ConnectionModel());
         }
         else{
-            return new AccountService(loginTextField,passPasswordField);
+            return new AccountService(new SceneSwitcherModel(), new ConnectionModel(),loginTextField,passPasswordField);
         }
     }
 }

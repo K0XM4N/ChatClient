@@ -1,6 +1,8 @@
 package service;
 
+import lombok.AllArgsConstructor;
 import lombok.Setter;
+import model.ConnectionModel;
 import model.SceneSwitcherModel;
 
 import java.io.IOException;
@@ -15,8 +17,13 @@ public abstract class LoginTypeSuperclass implements LoginType {
 
     @Setter
     protected String username;
-    protected Socket serverSocket;
     protected SceneSwitcherModel sceneSwitcher;
+    protected ConnectionModel connectionModel;
+
+    public LoginTypeSuperclass(SceneSwitcherModel sceneSwitcher, ConnectionModel connectionModel){
+        this.sceneSwitcher =sceneSwitcher;
+        this.connectionModel = connectionModel;
+    }
 
     @Override
     public void logIn() throws IOException {}

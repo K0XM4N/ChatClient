@@ -6,19 +6,24 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import lombok.AllArgsConstructor;
 import model.ConnectionModel;
+import model.SceneSwitcherModel;
 
 import java.io.IOException;
 
 /**
  * Created by Krzysztof on 2017-01-18.
  */
-@AllArgsConstructor
+
 public class AccountService extends LoginTypeSuperclass {
 
     private TextField loginInput;
     private PasswordField passInput;
-    private ConnectionModel connectionModel;
 
+    public AccountService(SceneSwitcherModel sceneSwitcher, ConnectionModel connectionModel, TextField loginInput, PasswordField passInput) {
+        super(sceneSwitcher, connectionModel);
+        this.loginInput = loginInput;
+        this.passInput = passInput;
+    }
 
     @Override
     public void logIn() throws IOException {
