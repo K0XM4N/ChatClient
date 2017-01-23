@@ -1,6 +1,7 @@
 package service;
 
 import javafx.scene.control.Alert;
+import model.ConnectionModel;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -10,18 +11,16 @@ import java.net.Socket;
  */
 public class GuestService extends LoginTypeSuperclass {
 
+    private ConnectionModel connectionModel;
 
     @Override
-    public void logIn() {
+    public void logIn() throws IOException {
 
         setUsername("Guest");
-        connectToServer();
 
-        try {
-            sendUsernameToServer();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        connectionModel = new ConnectionModel();
+        connectionModel.connectToServer();
+        connectionModel.sendUsernameToServer(username);
 
     }
 
@@ -36,8 +35,4 @@ public class GuestService extends LoginTypeSuperclass {
 
     }
 
-    @Override
-    protected void sendUsernameToServer() throws IOException {
-        super.sendUsernameToServer();
-    }
 }

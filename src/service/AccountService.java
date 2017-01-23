@@ -5,6 +5,7 @@ import dao.UserDAO;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import lombok.AllArgsConstructor;
+import model.ConnectionModel;
 
 import java.io.IOException;
 
@@ -16,17 +17,19 @@ public class AccountService extends LoginTypeSuperclass {
 
     private TextField loginInput;
     private PasswordField passInput;
+    private ConnectionModel connectionModel;
 
 
     @Override
-    public void logIn() {
+    public void logIn() throws IOException {
         UserDAO userDAO = new UserDAO(loginInput,passInput);
         userDAO.logIn();
         setUsername(userDAO.getUserBean().getUsername());
+
+        connectionModel = new ConnectionModel();
+        connectionModel.connectToServer();
+        connectionModel.sendUsernameToServer(username);
     }
 
-    @Override
-    protected void sendUsernameToServer() throws IOException {
-        super.sendUsernameToServer();
-    }
+
 }

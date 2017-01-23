@@ -3,12 +3,14 @@ package service;
 import lombok.Getter;
 import lombok.NonNull;
 
+import java.io.IOException;
+
 /**
  * Created by Krzysztof on 2017-01-18.
  */
 
 public interface LoginType {
 
-    public void logIn();
+    public void logIn() throws IOException;
 
 }
