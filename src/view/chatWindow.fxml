@@ -36,7 +36,7 @@
       <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <children>
             <TextArea editable="false" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <ListView editable="true" prefHeight="350.0" prefWidth="123.0" HBox.hgrow="NEVER" />
+            <ListView editable="true" focusTraversable="false" prefHeight="350.0" prefWidth="123.0" HBox.hgrow="NEVER" />
          </children>
       </HBox>
       <HBox fillHeight="false" prefHeight="0.0" prefWidth="600.0" VBox.vgrow="NEVER">
