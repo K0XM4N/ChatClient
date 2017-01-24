@@ -1,6 +1,8 @@
 package model;
 
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextArea;
 import lombok.Getter;
 import service.alerts.AlertService;
 
@@ -29,7 +31,7 @@ public class ConnectionModel {
 
         if (serverSocket != null){
 
-
+            Node textArea = new TextArea();
 
         }
 
