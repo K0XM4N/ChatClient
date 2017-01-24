@@ -2,6 +2,7 @@ package model;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -25,6 +26,7 @@ public class SceneSwitcherModel {
     public void show(VBox currentVBoxContainer, VBox changedContainer){
 
         currentVBoxContainer.getChildren().clear();
+        currentVBoxContainer.setVgrow(changedContainer,Priority.ALWAYS);
         currentVBoxContainer.getChildren().addAll(changedContainer);
 
     }

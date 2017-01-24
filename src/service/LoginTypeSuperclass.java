@@ -36,7 +36,6 @@ public abstract class LoginTypeSuperclass implements LoginType {
 
         if (sceneSwitcher != null){
             VBox chatContainer = sceneSwitcher.loadScreen("../view/chatWindow.fxml");
-            chatContainer.setFillWidth(true);
             sceneSwitcher.show(mainContainer,chatContainer);
         }
 
