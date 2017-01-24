@@ -27,7 +27,7 @@ public class GuestService extends LoginTypeSuperclass {
         connectionModel.connectToServer();
         connectionModel.sendUsernameToServer(username);
         loadChatWindow();
-
+        //listenForMessage();
     }
 
 

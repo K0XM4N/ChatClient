@@ -5,6 +5,7 @@ import javafx.scene.layout.VBox;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import model.ConnectionModel;
+import model.ReceiverModel;
 import model.SceneSwitcherModel;
 
 import java.io.IOException;
@@ -22,6 +23,7 @@ public abstract class LoginTypeSuperclass implements LoginType {
     protected SceneSwitcherModel sceneSwitcher;
     protected ConnectionModel connectionModel;
     protected VBox mainContainer;
+    protected ReceiverModel receiverModel;
 
     public LoginTypeSuperclass(SceneSwitcherModel sceneSwitcher, ConnectionModel connectionModel, VBox mainContainer){
         this.sceneSwitcher =sceneSwitcher;
@@ -38,6 +40,14 @@ public abstract class LoginTypeSuperclass implements LoginType {
             VBox chatContainer = sceneSwitcher.loadScreen("../view/chatWindow.fxml");
             sceneSwitcher.show(mainContainer,chatContainer);
         }
+
+    }
+
+    protected void listenForMessage(){
+
+        receiverModel = new ReceiverModel(true,connectionModel.getServerSocket());
+        Thread receiver = new Thread(receiverModel);
+        receiver.start();
 
     }
 }
