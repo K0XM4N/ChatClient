@@ -42,7 +42,7 @@ public abstract class LoginTypeSuperclass implements LoginType {
 
     protected void listenForMessage(){
 
-        receiverModel = new ReceiverModel(true,connectionModel.getServerSocket());
+        receiverModel = new ReceiverModel(true);
         Thread receiver = new Thread(receiverModel);
         receiver.start();
 

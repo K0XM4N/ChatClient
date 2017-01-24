@@ -23,10 +23,10 @@ public class LoginChooserService {
     public LoginType chooseLoginType(){
 
         if (checkBoxGuest.isSelected()){
-            return new GuestLoginService(new SceneSwitcherModel(),new ConnectionModel(),mainContainer);
+            return new GuestLoginService(new SceneSwitcherModel(),ConnectionModel.getInstance(),mainContainer);
         }
         else{
-            return new AccountLoginService(new SceneSwitcherModel(), new ConnectionModel(),loginTextField,passPasswordField, mainContainer);
+            return new AccountLoginService(new SceneSwitcherModel(), ConnectionModel.getInstance(),loginTextField,passPasswordField, mainContainer);
         }
     }
 }

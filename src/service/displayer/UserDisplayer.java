@@ -16,7 +16,11 @@ public class UserDisplayer implements Displayer, DisplayRemover {
     @Override
     public void show(String textToDisplay) {
 
-        usersListView.getItems().add(textToDisplay);
+        if (usersListView != null) {
+            usersListView.getItems().addAll(textToDisplay);
+        } else {
+            System.out.println("ListView is null");
+        }
 
     }
 

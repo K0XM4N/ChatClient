@@ -31,7 +31,7 @@ public class AccountLoginService extends LoginTypeSuperclass {
         userDAO.logIn();
         setUsername(userDAO.getUserBean().getUsername());
 
-        connectionModel = new ConnectionModel();
+        connectionModel = ConnectionModel.getInstance();
         connectionModel.connectToServer();
         connectionModel.sendUsernameToServer(username);
         loadChatWindow();

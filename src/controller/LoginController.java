@@ -2,9 +2,11 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
 import model.SceneSwitcherModel;
@@ -25,12 +27,13 @@ public class LoginController {
     private PasswordField passPasswordField;
     @FXML
     private CheckBox checkBoxGuest;
+    private ChatController chatController;
 
     private SceneSwitcherModel sceneSwitcher;
     private LoginChooserService loginChooserService;
     private LoginType loginType;
 
-    public void initialize(){
+    public void initialize() throws IOException {
         sceneSwitcher = new SceneSwitcherModel();
     }
 
