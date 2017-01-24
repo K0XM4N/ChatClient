@@ -1,16 +1,13 @@
-package service;
+package service.login.logic;
 
-import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
-import lombok.AllArgsConstructor;
 import lombok.Setter;
 import model.ConnectionModel;
 import model.ReceiverModel;
 import model.SceneSwitcherModel;
+import service.login.logic.LoginType;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.Socket;
 
 /**
  * Created by Krzysztof on 2017-01-19.

@@ -1,4 +1,4 @@
-package service;
+package service.alerts;
 
 import javafx.scene.control.Alert;
 

@@ -2,7 +2,7 @@ package model;
 
 import javafx.scene.control.Alert;
 import lombok.Getter;
-import service.AlertService;
+import service.alerts.AlertService;
 
 import java.io.IOException;
 import java.io.PrintWriter;

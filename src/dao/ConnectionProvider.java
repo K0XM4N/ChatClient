@@ -2,7 +2,7 @@ package dao;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import javafx.scene.control.Alert;
-import service.AlertService;
+import service.alerts.AlertService;
 
 import java.beans.PropertyVetoException;
 import java.sql.Connection;

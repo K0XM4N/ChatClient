@@ -1,6 +1,7 @@
-package service;
+package service.login.logic;
 
 import javafx.scene.control.Alert;
+import service.alerts.AlertService;
 
 /**
  * Created by Krzysztof on 2017-01-19.
@@ -10,7 +11,7 @@ public class LoginFieldsValidatorService {
     public static boolean isFieldVerified(String login, String username, String pass1, String pass2){
 
         if (login.isEmpty() || username.isEmpty() || pass1.isEmpty() || pass2.isEmpty()){
-            AlertService.showAlert(Alert.AlertType.INFORMATION, "Empty field","Please fill all fields.");
+            AlertService.showAlert(Alert.AlertType.INFORMATION, "Empty field", "Please fill all fields.");
             return false;
         }
         else{

@@ -5,10 +5,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import lombok.Cleanup;
 import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
-import service.AlertService;
-import service.LoginFieldsValidatorService;
+import service.alerts.AlertService;
+import service.login.logic.LoginFieldsValidatorService;
 
 import java.beans.PropertyVetoException;
 import java.sql.Connection;

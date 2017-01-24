@@ -1,6 +1,5 @@
-package service;
+package service.login.logic;
 
-import dao.UserBean;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -24,10 +23,10 @@ public class LoginChooserService {
     public LoginType chooseLoginType(){
 
         if (checkBoxGuest.isSelected()){
-            return new GuestService(new SceneSwitcherModel(),new ConnectionModel(),mainContainer);
+            return new GuestLoginService(new SceneSwitcherModel(),new ConnectionModel(),mainContainer);
         }
         else{
-            return new AccountService(new SceneSwitcherModel(), new ConnectionModel(),loginTextField,passPasswordField, mainContainer);
+            return new AccountLoginService(new SceneSwitcherModel(), new ConnectionModel(),loginTextField,passPasswordField, mainContainer);
         }
     }
 }

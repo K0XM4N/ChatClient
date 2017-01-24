@@ -1,11 +1,9 @@
-package service;
+package service.login.logic;
 
-import dao.UserBean;
 import dao.UserDAO;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import lombok.AllArgsConstructor;
 import model.ConnectionModel;
 import model.SceneSwitcherModel;
 
@@ -15,12 +13,12 @@ import java.io.IOException;
  * Created by Krzysztof on 2017-01-18.
  */
 
-public class AccountService extends LoginTypeSuperclass {
+public class AccountLoginService extends LoginTypeSuperclass {
 
     private TextField loginInput;
     private PasswordField passInput;
 
-    public AccountService(SceneSwitcherModel sceneSwitcher, ConnectionModel connectionModel, TextField loginInput, PasswordField passInput, VBox mainContainer) {
+    public AccountLoginService(SceneSwitcherModel sceneSwitcher, ConnectionModel connectionModel, TextField loginInput, PasswordField passInput, VBox mainContainer) {
         super(sceneSwitcher, connectionModel,mainContainer);
         this.loginInput = loginInput;
         this.passInput = passInput;

@@ -1,4 +1,4 @@
-package service;
+package service.login.logic;
 
 import lombok.Getter;
 import lombok.NonNull;

@@ -1,7 +1,5 @@
 package controller;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
-import dao.ConnectionProvider;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -10,19 +8,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
 import model.SceneSwitcherModel;
-import service.LoginChooserService;
-import service.LoginType;
+import service.login.logic.LoginChooserService;
+import service.login.logic.LoginType;
 
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-import java.beans.PropertyVetoException;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 
 public class LoginController {
