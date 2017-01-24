@@ -1,11 +1,22 @@
 package controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 /**
  * Created by Krzysztof on 2017-01-23.
  */
 public class ChatController {
+
+    @FXML
+    private TextArea chatTextArea;
+    @FXML
+    private ListView usersListView;
+    @FXML
+    private TextField messageTextField;
 
     public void handleConnectItem(ActionEvent event) {
 

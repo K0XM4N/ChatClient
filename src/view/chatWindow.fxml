@@ -35,15 +35,15 @@
       </MenuBar>
       <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <children>
-            <TextArea editable="false" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-            <ListView editable="true" focusTraversable="false" prefHeight="350.0" prefWidth="123.0" HBox.hgrow="NEVER" />
+            <TextArea fx:id="chatTextArea" editable="false" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <ListView fx:id="usersListView" editable="true" focusTraversable="false" prefHeight="350.0" prefWidth="123.0" HBox.hgrow="NEVER" />
          </children>
       </HBox>
       <HBox fillHeight="false" prefHeight="0.0" prefWidth="600.0" VBox.vgrow="NEVER">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                <children>
-                  <TextField prefHeight="25.0" prefWidth="472.0" VBox.vgrow="ALWAYS" />
+                  <TextField fx:id="messageTextField" prefHeight="25.0" prefWidth="472.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
             <VBox prefHeight="25.0" prefWidth="123.0" HBox.hgrow="NEVER">
