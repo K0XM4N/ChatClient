@@ -80,33 +80,31 @@ public class UserDAO {
 
     }
 
-    public void logIn(){
+    public boolean logIn() throws PropertyVetoException, SQLException {
 
-        if (LoginFieldsValidatorService.isFieldVerified(userBean.getLogin(),userBean.getPassword1())){
+        if (LoginFieldsValidatorService.isFieldVerified(userBean.getLogin(), userBean.getPassword1())) {
 
-            try {
+            @Cleanup
+            Connection connection = ConnectionProvider.getConnection();
 
-                @Cleanup
-                Connection connection = ConnectionProvider.getConnection();
+            if (isLoginCorrect(connection) && isPasswordCorrect(connection)) {
 
-                if(isLoginCorrect(connection) && isPasswordCorrect(connection)){
-                    System.out.println("Login succesful!");
-                    userBean.setUsername(getUsernameFromDB(connection));
-                    AlertService.showAlert(Alert.AlertType.INFORMATION,"Login","Login succesful!");
-                }
-                else{
-                    System.out.println("Login failed");
-                    AlertService.showAlert(Alert.AlertType.ERROR,"Login","Login or password not match!");
-                }
+                System.out.println("Login succesful!");
+                userBean.setUsername(getUsernameFromDB(connection));
+                AlertService.showAlert(Alert.AlertType.INFORMATION, "Login", "Login succesful!");
+                return true;
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (PropertyVetoException e) {
-                e.printStackTrace();
+            } else {
+
+                System.out.println("Login failed");
+                AlertService.showAlert(Alert.AlertType.ERROR, "Login", "Login or password not match!");
+                return false;
+
             }
-
         }
-
+        else{
+            return false;
+        }
     }
 
 

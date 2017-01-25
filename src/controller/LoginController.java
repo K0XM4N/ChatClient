@@ -13,7 +13,9 @@ import model.SceneSwitcherModel;
 import service.login.logic.LoginChooserService;
 import service.login.logic.LoginType;
 
+import java.beans.PropertyVetoException;
 import java.io.IOException;
+import java.sql.SQLException;
 
 
 public class LoginController {
@@ -37,7 +39,7 @@ public class LoginController {
         sceneSwitcher = new SceneSwitcherModel();
     }
 
-    public void handleLoginButton(ActionEvent event) throws IOException {
+    public void handleLoginButton(ActionEvent event) throws IOException, PropertyVetoException, SQLException {
 
         loginChooserService = new LoginChooserService(loginTextField, passPasswordField,checkBoxGuest,mainContainer);
         loginType = loginChooserService.chooseLoginType();

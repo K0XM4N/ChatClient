@@ -20,12 +20,14 @@ public class GuestLoginService extends LoginTypeSuperclass {
     public void logIn() throws IOException {
 
         setUsername("Guest");
-        connectionModel.connectToServer();
-        connectionModel.sendUsernameToServer(username);
-        connectionModel.receiveUsernameFromServer();
-        loadChatWindow();
-        connectionModel.displayOnlineUser();
-        listenForMessage();
+
+        if (connectionModel.connectToServer()) {
+            connectionModel.sendUsernameToServer(username);
+            connectionModel.receiveUsernameFromServer();
+            loadChatWindow();
+            connectionModel.displayOnlineUser();
+            listenForMessage();
+        }
     }
 
 

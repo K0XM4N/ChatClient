@@ -46,13 +46,19 @@ public class ConnectionModel {
 
 
 
-    public void connectToServer() throws IOException {
+    public boolean connectToServer() throws IOException {
 
         try {
+
             serverSocket = new Socket("127.0.0.1",5000);
+            return true;
+
         } catch (IOException e) {
+
             System.out.println("Cannot connect to the server.");
             AlertService.showAlert(Alert.AlertType.WARNING, "Connection problems", "Cannot connect to the server.");
+            return false;
+
         }
 
     }
@@ -76,7 +82,7 @@ public class ConnectionModel {
             BufferedReader clientReader = new BufferedReader(clientInput);
 
             while(true){
-                if ((username = clientReader.readLine()).equals("Guest")){
+                if (!(username = clientReader.readLine()).equals("")){
                     this.username = username;
                     System.out.println("Username: " + username);
                     break;

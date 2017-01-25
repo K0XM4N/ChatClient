@@ -7,7 +7,9 @@ import model.ReceiverModel;
 import model.SceneSwitcherModel;
 import service.login.logic.LoginType;
 
+import java.beans.PropertyVetoException;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Created by Krzysztof on 2017-01-19.
@@ -29,7 +31,7 @@ public abstract class LoginTypeSuperclass implements LoginType {
     }
 
     @Override
-    public void logIn() throws IOException {}
+    public void logIn() throws IOException, PropertyVetoException, SQLException {}
 
     protected void loadChatWindow() throws IOException {
 
