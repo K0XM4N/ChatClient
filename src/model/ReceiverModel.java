@@ -1,6 +1,7 @@
 package model;
 
 import lombok.Setter;
+import service.displayer.DisplayService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -39,14 +40,14 @@ public class ReceiverModel implements Runnable {
 
             InputStreamReader chatInput = new InputStreamReader(serverSocket.getInputStream());
             BufferedReader messageReader = new BufferedReader(chatInput);
-//            MessageDisplayer messageDisplayer = new MessageDisplayer(connectionModel.getChatTextArea());
+            DisplayService messageDisplayer = new DisplayService();
             String message = "";
 
             while (continueThread){
 
                 if ((message=messageReader.readLine()) != null){
                     System.out.println(message);
-//                    messageDisplayer.show(message);
+                    messageDisplayer.showMessage(connectionModel.getChatTextArea(),message);
                 }
 
             }

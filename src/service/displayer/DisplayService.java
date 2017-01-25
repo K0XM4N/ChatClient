@@ -4,6 +4,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Created by Krzysztof on 2017-01-24.
@@ -16,9 +17,10 @@ public class DisplayService {
         conversation = new StringBuilder();
     }
 
-    public void showMessage(TextArea chatTextArea, String message, String username){
+    public void showMessage(TextArea chatTextArea, String message){
         String messageTime = getMessageTime();
-        conversation.append(messageTime + "\n       "  + username + " " + message);
+        conversation.append(messageTime + "\n       " + message + "\n");
+        chatTextArea.setText(conversation.toString());
     }
 
     public void showUser(ListView usersListView, String username){
@@ -31,7 +33,7 @@ public class DisplayService {
 
     private String getMessageTime(){
 
-        LocalDate time = LocalDate.now();
+        LocalDateTime time = LocalDateTime.now();
         String messageTime = time.toString().substring(11,16);
         return messageTime;
 
