@@ -1,14 +1,11 @@
 package model;
 
-import lombok.AllArgsConstructor;
 import lombok.Setter;
-import service.displayer.MessageDisplayer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
-import java.time.LocalDate;
 
 /**
  * Created by Krzysztof on 2017-01-23.
@@ -42,14 +39,14 @@ public class ReceiverModel implements Runnable {
 
             InputStreamReader chatInput = new InputStreamReader(serverSocket.getInputStream());
             BufferedReader messageReader = new BufferedReader(chatInput);
-            MessageDisplayer messageDisplayer = new MessageDisplayer(connectionModel.getChatTextArea());
+//            MessageDisplayer messageDisplayer = new MessageDisplayer(connectionModel.getChatTextArea());
             String message = "";
 
             while (continueThread){
 
                 if ((message=messageReader.readLine()) != null){
                     System.out.println(message);
-                    messageDisplayer.show(message);
+//                    messageDisplayer.show(message);
                 }
 
             }
