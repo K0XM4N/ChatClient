@@ -10,6 +10,7 @@ import lombok.Setter;
 import model.ConnectionModel;
 import service.sender.SendMessageService;
 
+import java.io.IOException;
 import java.net.Socket;
 
 /**
@@ -38,7 +39,7 @@ public class ChatController {
         username = connectionModel.getUsername();
         serverSocket = connectionModel.getServerSocket();
 
-        sendService = new SendMessageService(serverSocket,username);
+        sendService = new SendMessageService(serverSocket,username, messageTextField);
     }
 
     public void handleConnectItem(ActionEvent event) {
@@ -53,7 +54,7 @@ public class ChatController {
         
     }
 
-    public void handleSendButton(ActionEvent event) {
-
+    public void handleSendButton(ActionEvent event) throws IOException {
+        sendService.sendMessageToServer();
     }
 }
