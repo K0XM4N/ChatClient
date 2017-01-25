@@ -8,6 +8,9 @@ import javafx.scene.control.TextField;
 import lombok.Getter;
 import lombok.Setter;
 import model.ConnectionModel;
+import service.sender.SendMessageService;
+
+import java.net.Socket;
 
 /**
  * Created by Krzysztof on 2017-01-23.
@@ -22,15 +25,20 @@ public class ChatController {
     @FXML
     private TextField messageTextField;
 
-    @Setter
     private String username;
+    private Socket serverSocket;
     private ConnectionModel connectionModel;
-
+    private SendMessageService sendService;
 
     public void initialize(){
         connectionModel = ConnectionModel.getInstance();
         connectionModel.setOnlineUsersListView(usersListView);
         connectionModel.setChatTextArea(chatTextArea);
+
+        username = connectionModel.getUsername();
+        serverSocket = connectionModel.getServerSocket();
+
+        sendService = new SendMessageService(serverSocket,username);
     }
 
     public void handleConnectItem(ActionEvent event) {

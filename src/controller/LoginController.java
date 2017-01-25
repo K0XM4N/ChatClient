@@ -29,7 +29,6 @@ public class LoginController {
     private PasswordField passPasswordField;
     @FXML
     private CheckBox checkBoxGuest;
-    private ChatController chatController;
 
     private SceneSwitcherModel sceneSwitcher;
     private LoginChooserService loginChooserService;

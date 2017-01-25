@@ -92,18 +92,6 @@ public class ConnectionModel {
         }
     }
 
-    private ChatController getChatController() throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/chatWindow.fxml"));
-        Pane pane = loader.load();
-
-        ChatController chatController = loader.getController();
-        chatController.setUsername(username);
-        //System.out.println("Username in controller: " + chatController.getUsername());
-
-        return chatController;
-    }
-
     public void displayOnlineUser() throws IOException {
 
         DisplayService userDisplayer = new DisplayService();
