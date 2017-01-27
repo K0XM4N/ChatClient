@@ -31,8 +31,8 @@ public class GuestLoginService extends LoginTypeSuperclass {
             connectionModel.sendUsernameToServer(username);
             connectionModel.receiveOnlineUsersList();
 //            connectionModel.receiveUsernameFromServer();
-//            loadChatWindow();
-//            connectionModel.displayOnlineUser();
+            loadChatWindow();
+            connectionModel.displayOnlineUser();
 //            listenForMessage();
         }
     }

@@ -5,6 +5,7 @@ import javafx.scene.control.TextArea;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Created by Krzysztof on 2017-01-24.
@@ -23,8 +24,11 @@ public class DisplayService {
         chatTextArea.setText(conversation.toString());
     }
 
-    public void showUser(ListView usersListView, String username){
-        usersListView.getItems().add(username);
+    public void showUser(ListView usersListView, List<String> onlineUsers){
+
+        usersListView.getItems().clear();
+        usersListView.getItems().addAll(onlineUsers);
+
     }
 
     public void removeUser(ListView userListView, String username){

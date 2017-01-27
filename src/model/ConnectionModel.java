@@ -103,7 +103,7 @@ public class ConnectionModel {
     public void displayOnlineUser() throws IOException {
 
         DisplayService userDisplayer = new DisplayService();
-        userDisplayer.showUser(onlineUsersListView,username);
+        userDisplayer.showUser(onlineUsersListView, onlineUsers);
 
     }
 
