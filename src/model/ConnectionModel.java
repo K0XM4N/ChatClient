@@ -11,11 +11,10 @@ import lombok.Setter;
 import service.alerts.AlertService;
 import service.displayer.DisplayService;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by Krzysztof on 2017-01-22.
@@ -28,6 +27,8 @@ public class ConnectionModel {
     private String username;
     private ListView onlineUsersListView;
     private TextArea chatTextArea;
+    private List<String> onlineUsers;
+    private ReceiverModel onlineUsersReceiver;
 
     private static ConnectionModel connectionModel;
 
@@ -90,6 +91,13 @@ public class ConnectionModel {
             }
 
         }
+    }
+
+    public void receiveOnlineUsersList() throws IOException, ClassNotFoundException {
+
+        onlineUsersReceiver = new ReceiverModel(false);
+        onlineUsers = onlineUsersReceiver.getOnlineUsersList();
+
     }
 
     public void displayOnlineUser() throws IOException {

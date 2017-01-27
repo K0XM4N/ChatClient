@@ -1,6 +1,12 @@
 package service.login.logic;
 
+import controller.ChatController;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import model.ConnectionModel;
 import model.SceneSwitcherModel;
 
@@ -17,16 +23,17 @@ public class GuestLoginService extends LoginTypeSuperclass {
     }
 
     @Override
-    public void logIn() throws IOException {
+    public void logIn() throws IOException, ClassNotFoundException {
 
         setUsername("Guest");
 
         if (connectionModel.connectToServer()) {
             connectionModel.sendUsernameToServer(username);
-            connectionModel.receiveUsernameFromServer();
-            loadChatWindow();
-            connectionModel.displayOnlineUser();
-            listenForMessage();
+            connectionModel.receiveOnlineUsersList();
+//            connectionModel.receiveUsernameFromServer();
+//            loadChatWindow();
+//            connectionModel.displayOnlineUser();
+//            listenForMessage();
         }
     }
 

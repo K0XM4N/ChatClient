@@ -38,7 +38,7 @@ public class LoginController {
         sceneSwitcher = new SceneSwitcherModel();
     }
 
-    public void handleLoginButton(ActionEvent event) throws IOException, PropertyVetoException, SQLException {
+    public void handleLoginButton(ActionEvent event) throws IOException, PropertyVetoException, SQLException, ClassNotFoundException {
 
         loginChooserService = new LoginChooserService(loginTextField, passPasswordField,checkBoxGuest,mainContainer);
         loginType = loginChooserService.chooseLoginType();

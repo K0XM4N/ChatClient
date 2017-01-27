@@ -30,6 +30,7 @@ public class ChatController {
     private Socket serverSocket;
     private ConnectionModel connectionModel;
     private SendMessageService sendService;
+    private String textToSet;
 
     public void initialize(){
         connectionModel = ConnectionModel.getInstance();
@@ -40,6 +41,7 @@ public class ChatController {
         serverSocket = connectionModel.getServerSocket();
 
         sendService = new SendMessageService(serverSocket,username, messageTextField);
+
     }
 
     public void handleConnectItem(ActionEvent event) {
@@ -56,5 +58,13 @@ public class ChatController {
 
     public void handleSendButton(ActionEvent event) throws IOException {
         sendService.sendMessageToServer();
+    }
+
+    public void setTemporaryText(String textToSet) {
+        this.textToSet = textToSet;
+    }
+
+    public void setTextOnChatArea(){
+        chatTextArea.setText(textToSet);
     }
 }

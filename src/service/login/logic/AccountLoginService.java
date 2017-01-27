@@ -1,8 +1,11 @@
 package service.login.logic;
 
+import controller.ChatController;
 import dao.UserDAO;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.ConnectionModel;
 import model.SceneSwitcherModel;
@@ -42,6 +45,7 @@ public class AccountLoginService extends LoginTypeSuperclass {
                 loadChatWindow();
                 connectionModel.displayOnlineUser();
                 listenForMessage();
+
             }
 
         }

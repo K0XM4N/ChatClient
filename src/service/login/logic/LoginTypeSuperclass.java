@@ -31,7 +31,7 @@ public abstract class LoginTypeSuperclass implements LoginType {
     }
 
     @Override
-    public void logIn() throws IOException, PropertyVetoException, SQLException {}
+    public void logIn() throws IOException, PropertyVetoException, SQLException, ClassNotFoundException {}
 
     protected void loadChatWindow() throws IOException {
 

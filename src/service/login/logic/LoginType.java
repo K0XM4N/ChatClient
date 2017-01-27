@@ -13,6 +13,6 @@ import java.sql.SQLException;
 
 public interface LoginType {
 
-    public void logIn() throws IOException, PropertyVetoException, SQLException;
+    public void logIn() throws IOException, PropertyVetoException, SQLException, ClassNotFoundException;
 
 }

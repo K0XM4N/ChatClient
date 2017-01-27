@@ -6,7 +6,10 @@ import service.displayer.DisplayService;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by Krzysztof on 2017-01-23.
@@ -55,4 +58,27 @@ public class ReceiverModel implements Runnable {
 
     }
 
+    public List<String> getOnlineUsersList() throws IOException, ClassNotFoundException {
+
+        List<String> onlineUsers = null;
+
+        if (serverSocket != null){
+
+            ObjectInputStream usersStream = new ObjectInputStream(serverSocket.getInputStream());
+            onlineUsers = (LinkedList<String>) usersStream.readObject();
+
+            System.out.println("Users online");
+            for (String x: onlineUsers){
+                System.out.println(x);
+            }
+
+            return onlineUsers;
+        }
+        else{
+            onlineUsers = new LinkedList<>();
+            onlineUsers.add("NULL");
+            return onlineUsers;
+        }
+
+    }
 }
