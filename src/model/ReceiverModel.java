@@ -1,5 +1,6 @@
 package model;
 
+import lombok.Getter;
 import lombok.Setter;
 import service.displayer.DisplayService;
 
@@ -21,6 +22,8 @@ public class ReceiverModel implements Runnable {
     private boolean continueThread;
     private ConnectionModel connectionModel;
     private Socket serverSocket;
+    @Getter
+    private List<String> onlineUsers;
 
     public ReceiverModel(boolean continueThread){
         this.continueThread = continueThread;
@@ -43,7 +46,7 @@ public class ReceiverModel implements Runnable {
 
             InputStreamReader chatInput = new InputStreamReader(serverSocket.getInputStream());
             BufferedReader messageReader = new BufferedReader(chatInput);
-            DisplayService messageDisplayer = new DisplayService();
+            DisplayService messageDisplayer = new DisplayService(serverSocket);
             String message = "";
 
             while (continueThread){
@@ -60,7 +63,7 @@ public class ReceiverModel implements Runnable {
 
     public List<String> getOnlineUsersList() throws IOException, ClassNotFoundException {
 
-        List<String> onlineUsers = null;
+        //List<String> onlineUsers = null;
 
         if (serverSocket != null){
 

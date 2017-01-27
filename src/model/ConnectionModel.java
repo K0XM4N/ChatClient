@@ -1,11 +1,8 @@
 package model;
 
-import controller.ChatController;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.Pane;
 import lombok.Getter;
 import lombok.Setter;
 import service.alerts.AlertService;
@@ -13,7 +10,6 @@ import service.displayer.DisplayService;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -102,8 +98,8 @@ public class ConnectionModel {
 
     public void displayOnlineUser() throws IOException {
 
-        DisplayService userDisplayer = new DisplayService();
-        userDisplayer.showUser(onlineUsersListView, onlineUsers);
+        DisplayService userDisplayer = new DisplayService(serverSocket, onlineUsersListView);
+        userDisplayer.showUser(onlineUsers);
 
     }
 

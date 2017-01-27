@@ -6,8 +6,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import lombok.Getter;
-import lombok.Setter;
 import model.ConnectionModel;
+import service.displayer.DisplayService;
 import service.sender.SendMessageService;
 
 import java.io.IOException;
@@ -31,6 +31,7 @@ public class ChatController {
     private ConnectionModel connectionModel;
     private SendMessageService sendService;
     private String textToSet;
+    private DisplayService onlineUsersDisplayer;
 
     public void initialize(){
         connectionModel = ConnectionModel.getInstance();
@@ -41,6 +42,8 @@ public class ChatController {
         serverSocket = connectionModel.getServerSocket();
 
         sendService = new SendMessageService(serverSocket,username, messageTextField);
+
+        updateOnlineUsers();
 
     }
 
@@ -66,5 +69,11 @@ public class ChatController {
 
     public void setTextOnChatArea(){
         chatTextArea.setText(textToSet);
+    }
+
+    public void updateOnlineUsers(){
+        onlineUsersDisplayer = new DisplayService(serverSocket, usersListView);
+        Thread update = new Thread(onlineUsersDisplayer);
+        update.start();
     }
 }
