@@ -41,10 +41,8 @@ public class AccountLoginService extends LoginTypeSuperclass {
 
             if (connectionModel.connectToServer()) {
                 connectionModel.sendUsernameToServer(username);
-                connectionModel.receiveUsernameFromServer();
                 loadChatWindow();
-                connectionModel.displayOnlineUser();
-                listenForMessage();
+//                listenForMessage();
 
             }
 

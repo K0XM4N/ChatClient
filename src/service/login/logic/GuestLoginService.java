@@ -30,6 +30,7 @@ public class GuestLoginService extends LoginTypeSuperclass {
         if (connectionModel.connectToServer()) {
             connectionModel.sendUsernameToServer(username);
             loadChatWindow();
+//            listenForMessage();
         }
     }
 
