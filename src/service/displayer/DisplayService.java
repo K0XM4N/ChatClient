@@ -5,10 +5,7 @@ import javafx.scene.control.TextArea;
 import model.ReceiverModel;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,6 +23,7 @@ public class DisplayService implements Runnable{
     public DisplayService(Socket serverSocket, ListView onlineUsersListView){
         conversation = new StringBuilder();
         this.serverSocket = serverSocket;
+        this.onlineUsersListView = onlineUsersListView;
     }
 
     public DisplayService(Socket serverSocket) {
@@ -38,7 +36,7 @@ public class DisplayService implements Runnable{
         chatTextArea.setText(conversation.toString());
     }
 
-    public synchronized void showUser(List<String> onlineUsers){
+    public void showOnlineUsers(List<String> onlineUsers){
 
         onlineUsersListView.getItems().clear();
         onlineUsersListView.getItems().addAll(onlineUsers);
@@ -77,11 +75,17 @@ public class DisplayService implements Runnable{
     private void updateUsers() throws IOException, ClassNotFoundException, InterruptedException {
 
         ReceiverModel onlineUsersReceiver = new ReceiverModel(false);
-        List<String> firstUsersList = onlineUsersReceiver.getOnlineUsersList();
+        List<String> beforeUpdateOnlineUsersList = new LinkedList<>();
 
-//        while (true){
-//
-//
-//        }
+        while (true){
+
+            List<String> currentOnlineUsers = onlineUsersReceiver.getOnlineUsersListFromServer();
+            if (beforeUpdateOnlineUsersList.size() != currentOnlineUsers.size()){
+                System.out.println("NEW USER CONNECTED");
+                showOnlineUsers(currentOnlineUsers);
+                beforeUpdateOnlineUsersList = currentOnlineUsers;
+            }
+
+        }
     }
 }

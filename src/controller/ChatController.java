@@ -45,6 +45,7 @@ public class ChatController {
 
         updateOnlineUsers();
 
+
     }
 
     public void handleConnectItem(ActionEvent event) {

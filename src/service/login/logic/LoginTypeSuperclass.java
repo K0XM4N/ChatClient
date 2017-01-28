@@ -5,7 +5,6 @@ import lombok.Setter;
 import model.ConnectionModel;
 import model.ReceiverModel;
 import model.SceneSwitcherModel;
-import service.login.logic.LoginType;
 
 import java.beans.PropertyVetoException;
 import java.io.IOException;
@@ -22,7 +21,7 @@ public abstract class LoginTypeSuperclass implements LoginType {
     protected SceneSwitcherModel sceneSwitcher;
     protected ConnectionModel connectionModel;
     protected VBox mainContainer;
-    protected ReceiverModel receiverModel;
+    protected ReceiverModel messageReceiver;
 
     public LoginTypeSuperclass(SceneSwitcherModel sceneSwitcher, ConnectionModel connectionModel, VBox mainContainer){
         this.sceneSwitcher =sceneSwitcher;
@@ -44,8 +43,8 @@ public abstract class LoginTypeSuperclass implements LoginType {
 
     protected void listenForMessage(){
 
-        receiverModel = new ReceiverModel(true);
-        Thread receiver = new Thread(receiverModel);
+        messageReceiver = new ReceiverModel(true);
+        Thread receiver = new Thread(messageReceiver);
         receiver.start();
 
     }

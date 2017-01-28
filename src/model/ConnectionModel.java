@@ -92,14 +92,14 @@ public class ConnectionModel {
     public void receiveOnlineUsersList() throws IOException, ClassNotFoundException {
 
         onlineUsersReceiver = new ReceiverModel(false);
-        onlineUsers = onlineUsersReceiver.getOnlineUsersList();
+        onlineUsers = onlineUsersReceiver.getOnlineUsersListFromServer();
 
     }
 
     public void displayOnlineUser() throws IOException {
 
         DisplayService userDisplayer = new DisplayService(serverSocket, onlineUsersListView);
-        userDisplayer.showUser(onlineUsers);
+        userDisplayer.showOnlineUsers(onlineUsers);
 
     }
 

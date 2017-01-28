@@ -29,11 +29,7 @@ public class GuestLoginService extends LoginTypeSuperclass {
 
         if (connectionModel.connectToServer()) {
             connectionModel.sendUsernameToServer(username);
-            connectionModel.receiveOnlineUsersList();
-//            connectionModel.receiveUsernameFromServer();
             loadChatWindow();
-            connectionModel.displayOnlineUser();
-//            listenForMessage();
         }
     }
 

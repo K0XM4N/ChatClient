@@ -61,7 +61,7 @@ public class ReceiverModel implements Runnable {
 
     }
 
-    public List<String> getOnlineUsersList() throws IOException, ClassNotFoundException {
+    public List<String> getOnlineUsersListFromServer() throws IOException, ClassNotFoundException {
 
         //List<String> onlineUsers = null;
 
