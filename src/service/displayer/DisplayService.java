@@ -3,6 +3,7 @@ package service.displayer;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import model.ReceiverModel;
+import service.sender.SendMessageService;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -19,15 +20,22 @@ public class DisplayService implements Runnable{
     private Socket serverSocket;
     private ListView onlineUsersListView;
     private int listViewSize;
+    private SendMessageService sendMessageService;
 
-    public DisplayService(Socket serverSocket, ListView onlineUsersListView){
-        conversation = new StringBuilder();
+    public DisplayService(Socket serverSocket, ListView onlineUsersListView, SendMessageService sendService){
         this.serverSocket = serverSocket;
         this.onlineUsersListView = onlineUsersListView;
+        this.sendMessageService = sendService;
     }
 
     public DisplayService(Socket serverSocket) {
         this.serverSocket = serverSocket;
+        conversation = new StringBuilder();
+    }
+
+    public DisplayService(Socket serverSocket, ListView onlineUsersListView) {
+        this.serverSocket = serverSocket;
+        this.onlineUsersListView = onlineUsersListView;
     }
 
     public void showMessage(TextArea chatTextArea, String message){
@@ -84,6 +92,10 @@ public class DisplayService implements Runnable{
                 System.out.println("NEW USER CONNECTED");
                 showOnlineUsers(currentOnlineUsers);
                 beforeUpdateOnlineUsersList = currentOnlineUsers;
+                if (sendMessageService.getUsername() == null){
+                    String currentUser = currentOnlineUsers.get(currentOnlineUsers.size()-1);
+                    sendMessageService.setUsername(currentUser);
+                }
             }
 
         }

@@ -2,7 +2,6 @@ package service.sender;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import lombok.Cleanup;
 import lombok.Getter;
 import lombok.Setter;
 import service.alerts.AlertService;
@@ -18,12 +17,14 @@ import java.net.Socket;
 public class SendMessageService {
 
     private Socket serverSocket;
+    @Setter
+    @Getter
     private String username;
     private TextField messsageInput;
 
-    public SendMessageService(Socket serverSocket, String username, TextField messageTextField) {
+    public SendMessageService(Socket serverSocket, TextField messageTextField) {
         this.serverSocket = serverSocket;
-        this.username = username;
+        this.username = null;
         this.messsageInput = messageTextField;
     }
 
@@ -32,7 +33,7 @@ public class SendMessageService {
 
         if (serverSocket != null){
 
-            String message = getMessageFromInput();
+            String message = getMessageFromInputTextField();
             PrintWriter clientWriter = new PrintWriter(serverSocket.getOutputStream());
             clientWriter.println(message);
             clientWriter.flush();
@@ -46,7 +47,7 @@ public class SendMessageService {
 
     }
 
-    private String getMessageFromInput(){
+    private String getMessageFromInputTextField(){
 
         if (messsageInput != null){
             return username + " > " + messsageInput.getText();

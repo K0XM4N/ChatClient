@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -41,9 +42,9 @@ public class ChatController {
         username = connectionModel.getUsername();
         serverSocket = connectionModel.getServerSocket();
 
-        sendService = new SendMessageService(serverSocket,username, messageTextField);
+        sendService = new SendMessageService(serverSocket, messageTextField);
 
-        updateOnlineUsers();
+        updateOnlineUsers(sendService);
 
 
     }
@@ -72,8 +73,8 @@ public class ChatController {
         chatTextArea.setText(textToSet);
     }
 
-    public void updateOnlineUsers(){
-        onlineUsersDisplayer = new DisplayService(serverSocket, usersListView);
+    public void updateOnlineUsers(SendMessageService sendService){
+        onlineUsersDisplayer = new DisplayService(serverSocket, usersListView,sendService);
         Thread update = new Thread(onlineUsersDisplayer);
         update.start();
     }
