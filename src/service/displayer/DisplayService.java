@@ -1,5 +1,6 @@
 package service.displayer;
 
+import javafx.application.Platform;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import model.ReceiverModel;
@@ -89,9 +90,18 @@ public class DisplayService implements Runnable{
 
             List<String> currentOnlineUsers = onlineUsersReceiver.getOnlineUsersListFromServer();
             if (beforeUpdateOnlineUsersList.size() != currentOnlineUsers.size()){
+
                 System.out.println("NEW USER CONNECTED");
-                showOnlineUsers(currentOnlineUsers);
+
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        showOnlineUsers(currentOnlineUsers);
+                    }
+                });
+
                 beforeUpdateOnlineUsersList = currentOnlineUsers;
+
                 if (sendMessageService.getUsername() == null){
                     String currentUser = currentOnlineUsers.get(currentOnlineUsers.size()-1);
                     sendMessageService.setUsername(currentUser);
